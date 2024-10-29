@@ -2,6 +2,7 @@
 
 <template>
   <cl-button />
+  <cl-button />
 </template>
 
 <style scoped>
