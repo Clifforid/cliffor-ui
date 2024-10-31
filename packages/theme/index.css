@@ -1,1 +1,74 @@
 @import "./reset.css";
+:root {
+  /* colors */
+  --cl-color-white: #ffffff;
+  --cl-color-black: #000000;
+  --colors: (
+    primary: #409eff,
+    success: #67c23a,
+    warning: #e6a23c,
+    danger: #f56c6c,
+    info: #909399
+  );
+  --cl-bg-color: #ffffff;
+  --cl-bg-color-page: #f2f3f5;
+  --cl-bg-color-overlay: #ffffff;
+  --cl-text-color-primary: #303133;
+  --cl-text-color-regular: #606266;
+  --cl-text-color-secondary: #909399;
+  --cl-text-color-placeholder: #a8abb2;
+  --cl-text-color-disabled: #c0c4cc;
+  --cl-border-color: #dcdfe6;
+  --cl-border-color-light: #e4e7ed;
+  --cl-border-color-lighter: #ebeef5;
+  --cl-border-color-extra-light: #f2f6fc;
+  --cl-border-color-dark: #d4d7de;
+  --cl-border-color-darker: #cdd0d6;
+  --cl-fill-color: #f0f2f5;
+  --cl-fill-color-light: #f5f7fa;
+  --cl-fill-color-lighter: #fafafa;
+  --cl-fill-color-extra-light: #fafcff;
+  --cl-fill-color-dark: #ebedf0;
+  --cl-fill-color-darker: #e6e8eb;
+  --cl-fill-color-blank: #ffffff;
+
+  @each $val, $color in var(--colors) {
+    --cl-color-$(val): $(color);
+    @for $i from 3 to 9 {
+      --cl-color-$(val)-light-$(i): mix(#fff, $(color), 0$ (i));
+    }
+    --cl-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+  }
+
+  /* border */
+  --cl-border-width: 1px;
+  --cl-border-style: solid;
+  --cl-border-color-hover: var(--cl-text-color-disabled);
+  --cl-border: var(--cl-border-width) var(--cl-border-style)
+    var(--cl-border-color);
+  --cl-border-radius-base: 4px;
+  --cl-border-radius-small: 2px;
+  --cl-border-radius-round: 20px;
+  --cl-border-radius-circle: 100%;
+
+  /*font*/
+  --cl-font-size-extra-large: 20px;
+  --cl-font-size-large: 18px;
+  --cl-font-size-medium: 16px;
+  --cl-font-size-base: 14px;
+  --cl-font-size-small: 13px;
+  --cl-font-size-extra-small: 12px;
+  --cl-font-family: "Helvetica Neue", Helvetica, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "\5fae\8f6f\96c5\9ed1", Arial,
+    sans-serif;
+  --cl-font-weight-primary: 500;
+
+  /*disabled*/
+  --cl-disabled-bg-color: var(--cl-fill-color-light);
+  --cl-disabled-text-color: var(--cl-text-color-placeholder);
+  --cl-disabled-border-color: var(--cl-border-color-light);
+
+  /*animation*/
+  --cl-transition-duration: 0.4s;
+  --cl-transition-duration-fast: 0.2s;
+}
