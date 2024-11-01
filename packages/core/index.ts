@@ -7,5 +7,5 @@ import "@cliffor-ui/theme/index.css";
 library.add(fas);
 const installer = makeInstaller(components);
 
-export * from "@cliffor-ui/components";
+export * from "../components";
 export default installer;
