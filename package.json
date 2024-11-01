@@ -10,7 +10,8 @@
     "docs:build": "pnpm --filter @cliffor-ui/docs build",
     "docs:preview": "pnpm --filter @cliffor-ui/docs preview",
     "test": "pnpm --filter @cliffor-ui/components test",
-    "build": "pnpm --filter cliffor-ui build"
+    "build": "pnpm --filter cliffor-ui build",
+    "release": "pnpm --filter cliffor-ui release"
   },
   "keywords": [],
   "author": "",
