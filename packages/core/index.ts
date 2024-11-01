@@ -5,6 +5,10 @@ import components from "./compoents";
 import "@cliffor-ui/theme/index.css";
 
 library.add(fas);
+
+/**
+ * @description install all SFC as Vue Plugin with App.use
+ */
 const installer = makeInstaller(components);
 
 export * from "../components";

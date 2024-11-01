@@ -2,6 +2,7 @@ import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3";
 import { fn, within, userEvent, expect, clearAllMocks } from "@storybook/test";
 
 import { ClButton, ClButtonGroup } from "cliffor-ui";
+import "cliffor-ui/dist/index.css";
 import { set } from "lodash-es";
 
 type Story = StoryObj<typeof ClButton> & { argTypes?: ArgTypes };
@@ -183,7 +184,7 @@ export const Circle: Story = {
     setup() {
       return { args };
     },
-    template: container(`<cl-button circle v-bind="args">`),
+    template: container(`<cl-button circle v-bind="args" />`),
   }),
   play: async ({ canvasElement, args, step }) => {
     const canvas = within(canvasElement);
