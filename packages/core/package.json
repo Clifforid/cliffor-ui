@@ -1,6 +1,6 @@
 {
   "name": "cliffor-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Components library by Vues + TS",
   "type": "module",
   "main": "./dist/umd/index.umd.cjs",
