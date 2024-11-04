@@ -1,4 +1,5 @@
 import {
+  ClAlert,
   ClButton,
   ClIcon,
   ClButtonGroup,
@@ -8,6 +9,7 @@ import {
 import type { Plugin } from "vue";
 
 export default [
+  ClAlert,
   ClButton,
   ClIcon,
   ClButtonGroup,

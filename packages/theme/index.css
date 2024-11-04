@@ -31,11 +31,11 @@
   --cl-fill-color-dark: #ebedf0;
   --cl-fill-color-darker: #e6e8eb;
   --cl-fill-color-blank: #ffffff;
-
+  /* prettier-ignore */
   @each $val, $color in var(--colors) {
     --cl-color-$(val): $(color);
     @for $i from 3 to 9 {
-      --cl-color-$(val)-light-$(i): mix(#fff, $(color), 0$ (i));
+      --cl-color-$(val)-light-$(i): mix(#fff, $(color), 0.$(i));
     }
     --cl-color-$(val)-dark-2: mix(#000, $(color), 0.2);
   }

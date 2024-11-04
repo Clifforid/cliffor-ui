@@ -1,17 +1,21 @@
 {
   "name": "@cliffor-ui/docs",
   "version": "1.0.0",
+  "type": "module",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vitepress dev",
-    "build": "vitepress build",
-    "preview": "vitepress preview"
+    "dev": "vitepress dev ./",
+    "build": "vitepress build ./"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "vitepress": "1.0.0-rc.44"
+    "@vitepress-demo-preview/plugin": "^1.2.3",
+    "vitepress": "1.0.0-rc.44",
+    "vitepress-api-table": "workspace:*",
+    "vitepress-preview-component": "workspace:*"
   }
 }
