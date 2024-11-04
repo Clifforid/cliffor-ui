@@ -1,7 +1,8 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
-import { readdirSync } from "fs";
-import { map, filter, delay } from "lodash-es";
+import { readdirSync, readdir } from "fs";
+import { map, filter, delay, defer } from "lodash-es";
+import { visualizer } from "rollup-plugin-visualizer";
 import hooks from "./hooksPlugin";
 import dts from "vite-plugin-dts";
 import shell from "shelljs";
@@ -42,17 +43,24 @@ function getDirectoriesSync(basePath: string) {
 }
 
 function moveStyle() {
-  try {
-    readdirSync("./dist/es/theme");
-    shell.mv("./dist/es/theme", "./dist");
-  } catch (_) {
-    delay(moveStyle, TRY_MOVE_STYLES_DELAY);
-  }
+  readdir("./dist/es/theme", (err) => {
+    if (err) return delay(moveStyle, TRY_MOVE_STYLES_DELAY);
+    defer(() => shell.mv("./dist/es/theme", "./dist"));
+  });
+  // try {
+  //   readdirSync("./dist/es/theme");
+  //   shell.mv("./dist/es/theme", "./dist");
+  // } catch (_) {
+  //   delay(moveStyle, TRY_MOVE_STYLES_DELAY);
+  // }
 }
 
 export default defineConfig({
   plugins: [
     vue(),
+    visualizer({
+      filename: "dist/stats.es.html",
+    }),
     dts({
       tsconfigPath: "../../tsconfig.build.json",
       outDir: "dist/types",
@@ -96,7 +104,7 @@ export default defineConfig({
     cssCodeSplit: true,
     // 开启库模式
     lib: {
-      entry: resolve(__dirname, "index.ts"),
+      entry: resolve(__dirname, "../index.ts"),
       name: "ClifforUI",
       fileName: "index",
       formats: ["es"],
