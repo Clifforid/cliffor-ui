@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, inject } from "vue";
 import type { ButtonProps, ButtonEmits, ButtonInstance } from "./types";
-import { BUTTON_GROUP_CTX_KEY } from "./contants";
+import { BUTTON_GROUP_CTX_KEY } from "./constants";
 import { throttle } from "lodash-es";
 import ClIcon from "../Icon/Icon.vue";
 
@@ -85,3 +85,4 @@ defineExpose<ButtonInstance>({
 <style scoped>
 @import "./style.css";
 </style>
+./constants
