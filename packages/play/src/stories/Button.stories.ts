@@ -2,8 +2,10 @@ import type { Meta, StoryObj, ArgTypes } from "@storybook/vue3";
 import { fn, within, userEvent, expect, clearAllMocks } from "@storybook/test";
 
 import { ClButton, ClButtonGroup } from "cliffor-ui";
-import "cliffor-ui/dist/index.css";
+
 import { set } from "lodash-es";
+
+import "cliffor-ui/dist/theme/Button.css";
 
 type Story = StoryObj<typeof ClButton> & { argTypes?: ArgTypes };
 
