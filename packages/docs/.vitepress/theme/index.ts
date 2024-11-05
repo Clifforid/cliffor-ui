@@ -5,6 +5,7 @@ import ClifforUI from "cliffor-ui";
 
 import "vitepress-preview-component/style.css";
 import "cliffor-ui/dist/index.css";
+import "./reset.css";
 
 export default {
   ...DefaultTheme,

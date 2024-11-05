@@ -5,7 +5,7 @@ next:
   text: Button 按钮
 ---
 
-# 跟学 Eric，搭建自己的组件库
+# Cliff 搭建自己的组件库
 
 ## 安装
 
@@ -30,7 +30,7 @@ createApp(App).use(ErElement).mount("#app");
 
 ```vue
 <template>
-  <er-button>我是 Button</er-button>
+  <er-button>Cliffor Button</er-button>
 </template>
 ```
 
@@ -40,7 +40,7 @@ Cliffor-UI 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 
 ```vue
 <template>
-  <er-button>我是 Button</er-button>
+  <er-button>Cliffor Button</er-button>
 </template>
 <script>
 import { ClButton } from "Cliffor-ui";

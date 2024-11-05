@@ -2,13 +2,9 @@
 title: Alert
 description: Alert 组件文档
 
-next:
-  link: /components/loading
-  text: Loading 加载
-
 prev:
-  link: /get-started
-  text: 快速开始
+  link: /components/collapse
+  text: Collapse 折叠面板
 ---
 
 # Alert 提示
