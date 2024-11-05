@@ -5,7 +5,7 @@ next:
   text: Button 按钮
 ---
 
-# 跟学Eric，搭建自己的组件库
+# 跟学 Eric，搭建自己的组件库
 
 ## 安装
 
@@ -49,10 +49,6 @@ export default {
 };
 </script>
 ```
-
-
-::: api-table src=components/Button/types.ts
-:::
 
 ## 亮点
 
