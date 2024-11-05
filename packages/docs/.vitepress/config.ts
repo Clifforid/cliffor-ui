@@ -11,7 +11,7 @@ export default defineConfig({
   description: "跟学手写ElementUI组件库",
   appearance: false, // 关闭 darkMode @todo 深色模式完成后打开
   base: "/cliffor-ui/",
-  head: [["link", { rel: "icon", href: "/logo1.svg" }]],
+  head: [["link", { rel: "icon", href: "logo.svg" }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
