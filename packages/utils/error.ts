@@ -7,15 +7,19 @@ class ClUIError extends Error {
   }
 }
 
+function createClUIError(scope: string, msg: string) {
+  return new ClUIError(`[${scope}]: ${msg}`);
+}
+
 export function throwError(scope: string, msg: string) {
-  throw new ClUIError(`[${scope}]: ${msg}`);
+  throw createClUIError(scope, msg);
 }
 
 export function debugWarn(error: Error): void;
 export function debugWarn(scope: string, msg: string): void;
 export function debugWarn(scope: string | Error, msg?: string): void {
   if (process.env.NODE_ENV !== "production") {
-    const err = isString(scope) ? new ClUIError(`[${scope}]: ${msg}`) : scope;
+    const err = isString(scope) ? createClUIError(scope, msg!) : scope;
     console.warn(err);
   }
 }

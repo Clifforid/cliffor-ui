@@ -9,7 +9,9 @@
     "docs:build": "pnpm --filter @cliffor-ui/docs build",
     "release": "pnpm --filter cliffor-ui release",
     "story": "pnpm --filter @cliffor-ui/play storybook",
-    "test": "cross-env NODE_ENV=test pnpm --filter @cliffor-ui/components test",
+    "test":"run-s test:u test:c",
+    "test:c": "cross-env NODE_ENV=test pnpm --filter @cliffor-ui/components test",
+    "test:u": "cross-env NODE_ENV=test pnpm --filter @cliffor-ui/utils test",
     "build": "cross-env NODE_ENV=production pnpm --filter cliffor-ui build",
     "build:dev": "cross-env NODE_ENV=development pnpm --filter cliffor-ui build:watch"
   },
@@ -47,6 +49,9 @@
     "@cliffor-ui/hooks": "workspace:*",
     "@cliffor-ui/theme": "workspace:*",
     "@cliffor-ui/utils": "workspace:*",
+    "@vitest/coverage-v8": "^1.4.0",
+    "@vue/test-utils": "^2.4.5",
+    "jsdom": "^24.0.0",
     "cliffor-ui": "workspace:*",
     "lodash-es": "^4.17.21",
     "vue": "^3.4.19"
