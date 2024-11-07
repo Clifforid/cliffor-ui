@@ -1,8 +1,10 @@
 import { describe, it, expect, vi } from "vitest";
 import type { AlertType } from "./types";
 import { mount } from "@vue/test-utils";
+import { withInstall } from "@cliffor-ui/utils";
 import Alert from "./Alert.vue";
 import Icon from "../Icon/Icon.vue";
+import { ClAlert } from "./index";
 
 describe("Alert.vue", () => {
   const title = "Test Alert" as const;
@@ -127,5 +129,24 @@ describe("Alert.vue", () => {
     expect(wrapper.find(".cl-alert").attributes().style).toBe("display: none;");
     await wrapper.vm.open();
     expect(wrapper.find(".cl-alert").attributes().style).toBe("");
+  });
+});
+
+describe("Alert/index", () => {
+  it("should be exported with withInstall", () => {
+    expect(ClAlert.install).toBeDefined();
+  });
+  it("component should be exported", () => {
+    expect(ClAlert).toBe(Alert);
+  });
+  // optional
+  it("should enhance Alert component", () => {
+    const enhancedAlert = withInstall(Alert);
+    expect(enhancedAlert).toBe(ClAlert);
+  });
+  // optional
+  it("should apply specific enhance", () => {
+    const enhancedAlert = withInstall(Alert);
+    expect(enhancedAlert).toHaveProperty("install");
   });
 });
