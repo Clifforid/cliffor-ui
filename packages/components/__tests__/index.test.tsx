@@ -5,6 +5,7 @@ import {
   ClCollapse,
   ClCollapseItem,
   ClIcon,
+  ClTooltip,
 } from "../index";
 import type { Plugin } from "vue";
 import { describe, expect, it } from "vitest";
@@ -17,6 +18,7 @@ const comps = [
   ClCollapse,
   ClCollapseItem,
   ClIcon,
+  ClTooltip,
 ] as Plugin[];
 
 describe("components/index", () => {

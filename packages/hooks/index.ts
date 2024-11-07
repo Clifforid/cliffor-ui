@@ -1,3 +1,4 @@
 import useClickOutside from "./useClickOutside";
+import useEventListener from "./useEventListener";
 
-export { useClickOutside };
+export { useClickOutside, useEventListener };

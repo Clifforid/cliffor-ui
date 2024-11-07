@@ -5,6 +5,7 @@ import {
   ClButtonGroup,
   ClCollapse,
   ClCollapseItem,
+  ClTooltip,
 } from "@cliffor-ui/components";
 import type { Plugin } from "vue";
 
@@ -15,4 +16,5 @@ export default [
   ClButtonGroup,
   ClCollapse,
   ClCollapseItem,
+  ClTooltip,
 ] as Plugin[];

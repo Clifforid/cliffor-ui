@@ -36,6 +36,17 @@ export default defineConfig({
           { text: "Alert 提示", link: "components/alert" },
         ],
       },
+      {
+        text: "Vue基础",
+        collapsed: false,
+        items: [
+          { text: "Vue底层原理", link: "components/Vue-principal" },
+          {
+            text: "JS数据结构与算法",
+            link: "components/data-structure-and-algorithm",
+          },
+        ],
+      },
     ],
 
     socialLinks: [

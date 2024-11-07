@@ -1,12 +1,25 @@
 {
   "name": "@cliffor-ui/hooks",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "type": "module",
+  "module": "./.dist/index.js",
+  "types":"./dist/index.d.ts",
+  "files":["dist"],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest --run --coverage",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "peerDependencies": {
+    "vue":"^3.4.27",
+    "lodash-es": "^4.17.21"
+  }
 }

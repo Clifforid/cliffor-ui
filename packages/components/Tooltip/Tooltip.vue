@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import type { TooltipProps, TooltipEmits, TooltipInstance } from "./types";
 import { createPopper, type Instance } from "@popperjs/core";
-import { bind, debounce, isNil, type DebouncedFunc } from "lodash-es";
+import { bind, debounce, type DebouncedFunc } from "lodash-es";
 import { ref, watch, watchEffect, computed, onUnmounted, type Ref } from "vue";
 import { useClickOutside } from "@cliffor-ui/hooks";
+import useEventToTriggerNode from "./useEventToTriggerNode";
+
+interface _TooltipProps extends TooltipProps {
+  virtualRef?: HTMLElement | void;
+  virtualTriggering?: boolean;
+}
 
 defineOptions({
   name: "ClTooltip",
 });
-const props = withDefaults(defineProps<TooltipProps>(), {
+const props = withDefaults(defineProps<_TooltipProps>(), {
   placement: "bottom",
   trigger: "hover",
   transition: "fade",
@@ -25,7 +31,14 @@ const dropdownEvents: Ref<Record<string, EventListener>> = ref({});
 
 const containerNode = ref<HTMLElement>();
 const popperNode = ref<HTMLElement>();
-const triggerNode = ref<HTMLElement>();
+const _triggerNode = ref<HTMLElement>();
+
+const triggerNode = computed(() => {
+  if (props.virtualTriggering) {
+    return (props.virtualRef as HTMLElement) ?? _triggerNode.value;
+  }
+  return _triggerNode.value as HTMLElement;
+});
 
 const popperOptions = computed(() => ({
   placement: props.placement,
@@ -46,6 +59,22 @@ const openDelay = computed(() =>
 const closeDelay = computed(() =>
   props.trigger === "hover" ? props.hideTimeout : 0
 );
+
+const triggerStrategyMap: Map<string, () => void> = new Map();
+triggerStrategyMap.set("hover", () => {
+  events.value["mouseenter"] = openFinal;
+  outerEvents.value["mouseleave"] = closeFinal;
+  dropdownEvents.value["mouseenter"] = openFinal;
+});
+triggerStrategyMap.set("click", () => {
+  events.value["click"] = togglePopper;
+});
+triggerStrategyMap.set("contextmenu", () => {
+  events.value["contextmenu"] = (e) => {
+    e.preventDefault();
+    openFinal();
+  };
+});
 
 let openDebounce: DebouncedFunc<() => void> | void;
 let closeDebounce: DebouncedFunc<() => void> | void;
@@ -72,30 +101,14 @@ function setVisible(value: boolean) {
 
 function attachEvents() {
   if (props.disabled || props.manual) return;
-  if (props.trigger === "hover") {
-    events.value["mouseenter"] = openFinal;
-    outerEvents.value["mouseleave"] = closeFinal;
-    dropdownEvents.value["mouseenter"] = openFinal;
-    return;
-  }
-  if (props.trigger === "click") {
-    events.value["click"] = togglePopper;
-    return;
-  }
-  if (props.trigger === "contextmenu") {
-    events.value["contextmenu"] = (e) => {
-      e.preventDefault();
-      openFinal();
-    };
-    return;
-  }
+  triggerStrategyMap.get(props.trigger)?.();
 }
 
 let popperInstance: null | Instance;
 
 function destroyPopperInstance() {
-  if (isNil(popperInstance)) return;
-  popperInstance.destroy();
+  // if (isNil(popperInstance)) return;
+  popperInstance?.destroy();
   popperInstance = null;
 }
 
@@ -161,6 +174,11 @@ useClickOutside(containerNode, () => {
   visible.value && closeFinal();
 });
 
+useEventToTriggerNode(props, triggerNode, events, () => {
+  openDebounce?.cancel();
+  setVisible(false);
+});
+
 onUnmounted(() => {
   destroyPopperInstance();
 });
@@ -173,9 +191,15 @@ defineExpose<TooltipInstance>({
 
 <template>
   <div class="cl-tooltip" ref="containerNode" v-on="outerEvents">
-    <div class="cl-tooltip__trigger" ref="triggerNode" v-on="events">
+    <div
+      class="cl-tooltip__trigger"
+      ref="_triggerNode"
+      v-on="events"
+      v-if="!virtualTriggering"
+    >
       <slot></slot>
     </div>
+    <slot name="dafault" v-else></slot>
 
     <transition :name="transition" @after-leave="destroyPopperInstance">
       <div
@@ -193,4 +217,6 @@ defineExpose<TooltipInstance>({
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+@import "./style.css";
+</style>

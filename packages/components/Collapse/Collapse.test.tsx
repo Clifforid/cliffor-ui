@@ -141,7 +141,7 @@ describe("Collapse.vue", () => {
   });
 
   test("手风琴模式 错误处理", () => {
-    // const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     mount(
       () => (
         <Collapse accordion modelValue={["a", "b"]} {...{ onChange }}>
@@ -158,21 +158,21 @@ describe("Collapse.vue", () => {
       ),
       {
         global: {
-          stubs: ["CLIcon"],
+          stubs: ["ClIcon"],
         },
       }
     );
-    // expect(warn.mock.calls).toMatchInlineSnapshot(
-    //   `
-    //     [
-    //       [
-    //         [ClUIError: [ClCollapse] accordion mode should only have one active item],
-    //       ],
-    //     ]
-    //   `
-    // );
+    expect(warn.mock.calls).toMatchInlineSnapshot(
+      `
+        [
+          [
+            [ClUIError: [ClCollapse]: accordion mode should only have one active item],
+          ],
+        ]
+      `
+    );
   });
-  expect(() => wrapper.vm.$nextTick()).toThrow();
+  // expect(() => wrapper.vm.$nextTick()).toThrow();
 });
 
 describe("Collapse/transitionEvents.ts", () => {

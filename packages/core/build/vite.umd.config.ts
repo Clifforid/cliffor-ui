@@ -5,7 +5,8 @@ import { readFile } from "fs";
 import { delay, defer } from "lodash-es";
 import { visualizer } from "rollup-plugin-visualizer";
 import shell from "shelljs";
-import hooks from "./hooksPlugin";
+// import hooks from "./hooksPlugin";
+import { hooksPlugin as hooks } from "@cliffor-ui/vite-plugins";
 import vue from "@vitejs/plugin-vue";
 import terser from "@rollup/plugin-terser";
 
