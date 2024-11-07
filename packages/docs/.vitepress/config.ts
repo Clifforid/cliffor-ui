@@ -41,10 +41,10 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: "Vue底层原理", link: "components/Vue-principle" },
-          {
-            text: "JS数据结构与算法",
-            link: "components/data-structure-and-algorithm",
-          },
+          // {
+          //   text: "JS数据结构与算法",
+          //   link: "components/data-structure-and-algorithm",
+          // },
         ],
       },
     ],
