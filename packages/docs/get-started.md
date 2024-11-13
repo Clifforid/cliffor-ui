@@ -25,12 +25,12 @@ import "cliffor-ui/dist/index.css";
 
 import App from "./App.vue";
 // 全局使用
-createApp(App).use(ErElement).mount("#app");
+createApp(App).use(ClElement).mount("#app");
 ```
 
 ```vue
 <template>
-  <er-button>Cliffor Button</er-button>
+  <cl-button>Cliffor Button</cl-button>
 </template>
 ```
 
@@ -40,7 +40,7 @@ Cliffor-UI 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 
 ```vue
 <template>
-  <er-button>Cliffor Button</er-button>
+  <cl-button>Cliffor Button</cl-button>
 </template>
 <script>
 import { ClButton } from "Cliffor-ui";
